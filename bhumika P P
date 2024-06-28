@@ -1,0 +1,37 @@
+def word_counter(text):
+    # Convert all text to lowercase to ensure case insensitivity
+    text = text.lower()
+    
+    # Remove punctuation marks except apostrophes (to handle contractions properly)
+    punctuation = '!"#$%&()*+,-./:;<=>?@[\\]^_`{|}~'
+    for char in punctuation:
+        text = text.replace(char, ' ')
+    
+    # Split text into words
+    words = text.split()
+
+    # Create a dictionary to store word counts
+    word_count = {}
+    
+    # Count occurrences of each word
+    for word in words:
+        if word in word_count:
+            word_count[word] += 1
+        else:
+            word_count[word] = 1
+    
+    return word_count
+
+# Example usage:
+if __name__ == "__main__":
+    text = """
+    This is a sample text. It contains words and punctuation marks! 
+    We will count the number of occurrences of each word in this text.
+    """
+    
+    # Count words in the text
+    counts = word_counter(text)
+    
+    # Print the word counts
+    for word, count in counts.items():
+        print(f"{word}: {count}")
